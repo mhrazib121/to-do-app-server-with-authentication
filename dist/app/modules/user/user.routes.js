@@ -12,4 +12,5 @@ const router = express_1.default.Router();
 router.post("/sign-up", (0, validateRequest_1.default)(user_validation_1.UserValidation.createUserZodSchema), user_controller_1.UserController.userSignup);
 router.post("/login", (0, validateRequest_1.default)(user_validation_1.UserValidation.loginUserZodSchema), user_controller_1.UserController.loginUser);
 router.post("/refresh-token", (0, validateRequest_1.default)(user_validation_1.UserValidation.refreshTokenZodSchema), user_controller_1.UserController.refreshToken);
+router.get("/get-profile", user_controller_1.UserController.getMyProfile);
 exports.UserRoutes = router;

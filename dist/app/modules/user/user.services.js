@@ -61,8 +61,17 @@ const refreshToken = (token) => __awaiter(void 0, void 0, void 0, function* () {
         accessToken: newAccessToken,
     };
 });
+const getMyProfile = (token) => __awaiter(void 0, void 0, void 0, function* () {
+    const decodedToken = jsonwebtoken_1.default.decode(token);
+    const { userEmail } = decodedToken;
+    const getProfile = yield user_model_1.User.findOne({ email: userEmail });
+    return {
+        getProfile,
+    };
+});
 exports.UserServices = {
     userSignUp,
     loginUser,
     refreshToken,
+    getMyProfile,
 };

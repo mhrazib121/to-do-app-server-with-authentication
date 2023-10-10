@@ -76,8 +76,24 @@ const refreshToken = (0, utils_1.catchAsync)((req, res) => __awaiter(void 0, voi
         data: result,
     });
 }));
+const getMyProfile = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const token = req.headers.authorization;
+        const result = yield user_services_1.UserServices.getMyProfile(token);
+        (0, utils_1.sendResponse)(res, {
+            statusCode: http_status_1.default.OK,
+            success: true,
+            message: "Get profile retrieved successfully!",
+            data: result.getProfile,
+        });
+    }
+    catch (error) {
+        next(error);
+    }
+});
 exports.UserController = {
     userSignup,
     loginUser,
     refreshToken,
+    getMyProfile,
 };

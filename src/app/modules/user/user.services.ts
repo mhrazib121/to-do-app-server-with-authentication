@@ -76,9 +76,19 @@ const refreshToken = async (token: string): Promise<IRefreshTokenResponse> => {
     accessToken: newAccessToken,
   };
 };
+const getMyProfile = async (token: string | undefined) => {
+  const decodedToken: any = jwt.decode(token as string);
 
+  const { userEmail } = decodedToken;
+
+  const getProfile = await User.findOne({ email: userEmail });
+  return {
+    getProfile,
+  };
+};
 export const UserServices = {
   userSignUp,
   loginUser,
   refreshToken,
+  getMyProfile,
 };

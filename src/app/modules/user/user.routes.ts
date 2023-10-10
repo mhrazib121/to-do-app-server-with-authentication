@@ -21,5 +21,6 @@ router.post(
   validateRequest(UserValidation.refreshTokenZodSchema),
   UserController.refreshToken
 );
+router.get("/get-profile", UserController.getMyProfile);
 
 export const UserRoutes = router;
