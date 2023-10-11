@@ -28,7 +28,7 @@ const updateTodo = (query, payload) => __awaiter(void 0, void 0, void 0, functio
     if (findUserTodoList) {
         const findTask = findUserTodoList.todos.find(p => p._id == payload.id);
         if (findTask) {
-            findTask.isCompleted = payload.status;
+            findTask.isCompleted = payload.isCompleted;
         }
         else {
             throw new Error("Task not found");

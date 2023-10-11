@@ -14,13 +14,13 @@ const createTodo = async (payload: { email: string; todos: ITodo }) => {
 };
 const updateTodo = async (
   query: { email?: string },
-  payload: { id: string; status: boolean }
+  payload: { id: string; isCompleted: boolean }
 ) => {
   const findUserTodoList = await TodoList.findOne({ email: query.email });
   if (findUserTodoList) {
     const findTask = findUserTodoList.todos.find(p => p._id == payload.id);
     if (findTask) {
-      findTask.isCompleted = payload.status;
+      findTask.isCompleted = payload.isCompleted;
     } else {
       throw new Error("Task not found");
     }

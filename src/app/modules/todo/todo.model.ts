@@ -3,9 +3,9 @@ import { ITodo, ITodoList, TodoListModel, TodoModel } from "./todo.interface";
 
 const todoSchema = new Schema<ITodo, TodoModel>(
   {
-    _id: {
-      type: String,
-    },
+    // _id: {
+    //   type: String,
+    // },
     title: {
       type: String,
       required: true,
@@ -19,6 +19,7 @@ const todoSchema = new Schema<ITodo, TodoModel>(
     },
   },
   {
+    timestamps: true,
     toJSON: {
       virtuals: true,
     },

@@ -3,9 +3,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TodoList = void 0;
 const mongoose_1 = require("mongoose");
 const todoSchema = new mongoose_1.Schema({
-    _id: {
-        type: String,
-    },
+    // _id: {
+    //   type: String,
+    // },
     title: {
         type: String,
         required: true,
@@ -18,6 +18,7 @@ const todoSchema = new mongoose_1.Schema({
         type: String,
     },
 }, {
+    timestamps: true,
     toJSON: {
         virtuals: true,
     },
