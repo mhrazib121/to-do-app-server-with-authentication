@@ -35,9 +35,18 @@ const updateTodo = (query, payload) => __awaiter(void 0, void 0, void 0, functio
         }
     }
     else {
-        throw new Error("User not found");
+        throw new Error("There have no task for this user");
     }
     findUserTodoList === null || findUserTodoList === void 0 ? void 0 : findUserTodoList.save();
     return findUserTodoList;
 });
-exports.TodoServices = { createTodo, updateTodo };
+const getTodos = (query) => __awaiter(void 0, void 0, void 0, function* () {
+    const findUserTodoList = yield todo_model_1.TodoList.findOne({ email: query.email });
+    if (findUserTodoList) {
+        return findUserTodoList;
+    }
+    else {
+        throw new Error("There have no task for this user");
+    }
+});
+exports.TodoServices = { createTodo, updateTodo, getTodos };

@@ -25,10 +25,18 @@ const updateTodo = async (
       throw new Error("Task not found");
     }
   } else {
-    throw new Error("User not found");
+    throw new Error("There have no task for this user");
   }
   findUserTodoList?.save();
   return findUserTodoList;
 };
+const getTodos = async (query: { email?: string }) => {
+  const findUserTodoList = await TodoList.findOne({ email: query.email });
+  if (findUserTodoList) {
+    return findUserTodoList;
+  } else {
+    throw new Error("There have no task for this user");
+  }
+};
 
-export const TodoServices = { createTodo, updateTodo };
+export const TodoServices = { createTodo, updateTodo, getTodos };

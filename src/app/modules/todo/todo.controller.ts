@@ -22,8 +22,19 @@ const updateTodo = catchAsync(async (req: Request, res: Response) => {
     data: result,
   });
 });
+const getTodos = catchAsync(async (req: Request, res: Response) => {
+  const result = await TodoServices.getTodos(req.query);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: " Task status updated successfully !",
+    data: result,
+  });
+});
 
 export const TodoControllers = {
   createTodo,
   updateTodo,
+  getTodos,
 };
