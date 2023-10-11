@@ -8,11 +8,22 @@ const createTodo = catchAsync(async (req: Request, res: Response) => {
   sendResponse(res, {
     statusCode: 200,
     success: true,
-    message: "New access token generated successfully !",
+    message: "Task added successfully !",
+    data: result,
+  });
+});
+const updateTodo = catchAsync(async (req: Request, res: Response) => {
+  const result = await TodoServices.updateTodo(req.query, req.body);
+
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: " Task status updated successfully !",
     data: result,
   });
 });
 
 export const TodoControllers = {
   createTodo,
+  updateTodo,
 };

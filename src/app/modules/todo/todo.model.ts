@@ -1,21 +1,39 @@
 import { Schema, model } from "mongoose";
-import { ITodo, TodoModel } from "./todo.interface";
+import { ITodo, ITodoList, TodoListModel, TodoModel } from "./todo.interface";
 
 const todoSchema = new Schema<ITodo, TodoModel>(
   {
-    id: {
+    _id: {
       type: String,
     },
     title: {
       type: String,
       required: true,
     },
-    status: {
-      type: String,
+    isCompleted: {
+      type: Boolean,
       required: true,
     },
     deadline: {
       type: String,
+    },
+  },
+  {
+    toJSON: {
+      virtuals: true,
+    },
+  }
+);
+
+const todoListSchema = new Schema<ITodoList, TodoListModel>(
+  {
+    email: {
+      type: String,
+      require: true,
+    },
+    todos: {
+      type: [todoSchema],
+      required: true,
     },
   },
   {
@@ -26,4 +44,7 @@ const todoSchema = new Schema<ITodo, TodoModel>(
   }
 );
 
-export const Todo = model<ITodo>("Todo", todoSchema);
+export const TodoList = model<ITodoList, TodoListModel>(
+  "TodoList",
+  todoListSchema
+);

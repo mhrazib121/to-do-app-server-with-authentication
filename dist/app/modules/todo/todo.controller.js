@@ -17,10 +17,20 @@ const createTodo = (0, utils_1.catchAsync)((req, res) => __awaiter(void 0, void 
     (0, utils_1.sendResponse)(res, {
         statusCode: 200,
         success: true,
-        message: "New access token generated successfully !",
+        message: "Task added successfully !",
+        data: result,
+    });
+}));
+const updateTodo = (0, utils_1.catchAsync)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const result = yield todo_services_1.TodoServices.updateTodo(req.query, req.body);
+    (0, utils_1.sendResponse)(res, {
+        statusCode: 200,
+        success: true,
+        message: " Task status updated successfully !",
         data: result,
     });
 }));
 exports.TodoControllers = {
     createTodo,
+    updateTodo,
 };

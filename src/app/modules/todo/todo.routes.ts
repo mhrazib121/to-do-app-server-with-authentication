@@ -2,6 +2,7 @@ import express from "express";
 import { TodoControllers } from "./todo.controller";
 const router = express.Router();
 
-router.post("/", TodoControllers.createTodo);
+router.post("/create-todo", TodoControllers.createTodo);
+router.patch("/update-todo", TodoControllers.updateTodo);
 
 export const TodoRouters = router;
